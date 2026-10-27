@@ -1,0 +1,470 @@
+@import "tailwindcss";
+
+@theme {
+  /* Tipografia: UNA familia (Inter) para todo el sistema — la jerarquia se
+     logra por peso y tamano, no por familia. La serif decorativa eliminada
+     (directiva de producto 2026-08-25: homologar, menos ruido). */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Paleta semantica homologada (19 hex -> 12 tokens) */
+  --color-navy-950: #070e24;
+  --color-navy-900: #0b1533;
+  --color-navy-800: #12204a;
+  --color-navy-700: #1a2e63;
+  --color-navy-600: #23408a;
+  --color-navy-500: #2f54b0;
+  --color-ink: #16203a;
+  --color-muted: #5a6478;
+  --color-gold: #c6a15b;
+  --color-gold-soft: #fdf8ec;
+  --color-naranja: #e8862e;          /* acento del logo */
+  --color-cream: #f7f4ec;            /* fondo de la app */
+  --color-surface: #ffffff;
+  --color-line: #e4e0d4;             /* bordes */
+  --color-red: #c2461e;              /* urgente / peligro */
+  --color-red-dark: #c05f1e;
+  --color-red-soft: #fdf5f2;         /* fondo de alerta */
+  --color-orange: #e07b39;
+  --color-amber: #d9a520;
+  --color-amber-dark: #a87e12;
+  --color-green: #2f7d4f;
+  --color-whatsapp: #25d366;
+
+  /* Radios homologados: sm inputs, md botones, lg tarjetas, pill chips */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* Sombra unica y sutil (estetica plana fintech) */
+  --shadow-soft: 0 10px 30px rgba(11, 21, 51, 0.10);
+}
+
+/* CQ Asesor Patrimonial — design system v3 (2026-08-25, homologacion UI)
+   Paleta: azul marino profundo (confianza/finanzas) + oro (premium
+   patrimonial) + rojo semantico (urgencia) + verde (proteccion). */
+
+:root {
+  --navy-950: #070e24;
+  --navy-900: #0b1533;
+  --navy-800: #12204a;
+  --navy-700: #1a2e63;
+  --navy-600: #23408a;
+  --navy-500: #2f54b0;
+  --gold: #c6a15b;
+  --gold-soft: #fdf8ec;
+  --naranja: #e8862e;          /* acento del logo (línea naranja) */
+  --ink: #16203a;
+  --paper: #f7f4ec;
+  --white: #ffffff;
+  --line: #e4e0d4;
+  --muted: #5a6478;
+  --red: #c2461e;
+  --red-soft: #fdf5f2;
+  --green: #2f7d4f;
+  --shadow: 0 10px 30px rgba(11, 21, 51, 0.10);
+  --shadow-lg: 0 24px 60px rgba(11, 21, 51, 0.28);
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+}
+
+img { max-width: 100%; }
+
+.container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+.section { padding: 88px 0; }
+.section-alt { background: var(--white); border-block: 1px solid var(--line); }
+.section-dark { background: linear-gradient(160deg, var(--navy-900), var(--navy-950)); color: var(--paper); }
+.section-dark .section-title { color: var(--white); }
+.section-dark .section-sub { color: rgba(248,247,243,0.72); }
+.section-dark .eyebrow { color: var(--gold); }
+
+.eyebrow {
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--navy-600); margin-bottom: 14px;
+}
+.section-title { font-size: clamp(1.9rem, 3.4vw, 2.6rem); color: var(--navy-900); margin-bottom: 16px; font-weight: 700; letter-spacing: -0.01em; }
+.section-sub { color: var(--muted); max-width: 640px; margin: 0 auto 40px; text-align: center; }
+.section-head { text-align: center; margin-bottom: 48px; }
+.section-head .eyebrow { margin-bottom: 10px; }
+
+/* ===== Botones (upgrade 2026-08-25: apetecibles de oprimir) ===== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font-weight: 600; font-size: 1rem; text-decoration: none;
+  border-radius: 16px; padding: 16px 32px;
+  border: 2px solid transparent; cursor: pointer; position: relative; overflow: hidden;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.28s ease, background 0.28s ease, border-color 0.28s ease;
+}
+.btn:active { transform: scale(0.97); }
+/* brillo barrido al hover (elegante, sin caer en lo decorativo) */
+.btn::after {
+  content: ""; position: absolute; top: 0; left: -70%; width: 45%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: skewX(-18deg); transition: left 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.btn:hover::after { left: 130%; }
+.btn-primary {
+  background: linear-gradient(135deg, #d4af6a, var(--gold) 55%, #b98f45);
+  color: var(--navy-950); border-color: var(--gold);
+  box-shadow: 0 10px 28px rgba(198,161,91,0.38), inset 0 1px 0 rgba(255,255,255,0.35);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(198,161,91,0.5), inset 0 1px 0 rgba(255,255,255,0.35); }
+.btn-outline { background: transparent; color: var(--gold); border-color: var(--gold); }
+.btn-outline:hover { background: rgba(198,161,91,0.12); transform: translateY(-3px); box-shadow: 0 10px 26px rgba(198,161,91,0.22); }
+.btn-lg { padding: 19px 38px; font-size: 1.08rem; border-radius: 18px; }
+.btn-whatsapp {
+  background: linear-gradient(135deg, #2ee06f, #25d366); color: #062b16; border-color: #25d366;
+  box-shadow: 0 10px 26px rgba(37,211,102,0.35), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+.btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(37,211,102,0.45), inset 0 1px 0 rgba(255,255,255,0.3); }
+
+/* ===== Nav ===== */
+.nav {
+  position: sticky; top: 0; z-index: 50; background: rgba(248,247,243,0.9);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; max-width: 1140px; margin: 0 auto; }
+.nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+.nav-brand img { height: 52px; width: auto; }
+.nav-brand-text strong { font-family: "Inter", serif; font-size: 1.05rem; color: var(--navy-900); }
+.nav-brand-text small { font-size: 0.72rem; color: var(--muted); }
+.nav-links { display: flex; align-items: center; gap: 26px; }
+.nav-links a { text-decoration: none; color: var(--ink); font-size: 0.92rem; font-weight: 500; }
+.nav-links a:hover { color: var(--navy-600); }
+.nav-links .btn { padding: 11px 20px; font-size: 0.9rem; border-radius: 12px; }
+.nav-toggle {
+  display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--ink);
+}
+@media (max-width: 860px) {
+  .nav-toggle { display: block; }
+  .nav-links {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--white); flex-direction: column; padding: 20px 24px;
+    border-bottom: 1px solid var(--line); align-items: flex-start;
+  }
+  .nav-links.open { display: flex; }
+  .nav-brand-text { display: none; }
+}
+
+/* ===== Hero (premium, oscuro) ===== */
+.hero {
+  padding: 104px 0 96px;
+  background:
+    radial-gradient(900px 420px at 88% -10%, rgba(232,134,46,0.16), transparent 60%),
+    radial-gradient(1000px 500px at 10% 110%, rgba(47,84,176,0.22), transparent 55%),
+    linear-gradient(165deg, var(--navy-800), var(--navy-950));
+  color: var(--paper);
+}
+.hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: stretch; }
+.hero-copy .eyebrow { color: var(--gold); }
+.hero-title { font-size: clamp(2.4rem, 5vw, 3.6rem); color: var(--white); margin-bottom: 20px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.1; }
+.hero-title em { font-style: italic; color: var(--gold); }
+.hero-sub { font-size: 1.14rem; color: rgba(248,247,243,0.78); max-width: 540px; margin-bottom: 34px; }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+.hero-micro { font-size: 0.86rem; color: rgba(248,247,243,0.55); }
+.hero-media { position: relative; }
+/* La imagen topa AMBOS bordes del hero (directiva de Carlos 2026-08-25):
+   el que se estira es el FRAME (div — respeta top+bottom con height auto);
+   la img es un elemento REEMPLAZADO: con height auto ignora el bottom y
+   usa su alto natural (por eso 'top:-104px evitaba llegar abajo'). La
+   img llena el frame con height:100% (alto resuelto) + width auto. */
+.hero-photo-frame {
+  position: absolute; top: -104px; bottom: -96px;
+  left: 0; right: 0;
+  display: flex; align-items: flex-end; justify-content: center;
+}
+/* Recorte con fondo transparente: la modelo se apoya en el borde inferior del hero
+   y flota sobre el azul marino. La sombra la despega del fondo. */
+.hero-photo-frame img {
+  height: auto; max-height: 100%; width: auto; max-width: 100%;
+  display: block;
+  transform: scale(1.14); transform-origin: bottom center;
+  filter: drop-shadow(0 10px 22px rgba(0,0,0,0.28));
+}
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero { padding: 60px 0; }
+  /* la imagen sigue topando los bordes del hero en movil (padding 60px) */
+  .hero-photo-frame { top: -60px; bottom: -60px; }
+  /* movil: la foto de 'quien soy' conserva el padding del container
+     (el full-bleed solo aplica en web, directiva de Carlos 2026-08-25) */
+  .trust-photo-frame { left: 0; }
+}
+
+/* ===== Tarjetas ===== */
+.cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.cards-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+@media (max-width: 980px) { .cards-4 { grid-template-columns: repeat(2, 1fr); } .cards-3 { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .cards-4 { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 28px; box-shadow: var(--shadow);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.32s ease, border-color 0.32s ease;
+}
+.card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.card h3 { font-size: 1.15rem; color: var(--navy-900); margin-bottom: 10px; }
+.card p { color: var(--muted); font-size: 0.95rem; }
+/* Pain cards (upgrade 2026-08-25): icono CENTRADO en chip circular suave */
+.pain-card {
+  border-top: 4px solid var(--gold);
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px;
+}
+.pain-card:hover { border-top-color: var(--naranja); }
+.pain-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 62px; height: 62px; border-radius: 50%;
+  background: linear-gradient(150deg, var(--gold-soft), #f4ead2);
+  border: 1px solid rgba(198,161,91,0.35);
+  font-size: 1.7rem; margin-bottom: 10px;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.32s ease;
+}
+.pain-card:hover .pain-icon { transform: translateY(-3px) scale(1.06); box-shadow: 0 10px 22px rgba(198,161,91,0.3); }
+.step-card { position: relative; padding-top: 44px; }
+.step-n {
+  position: absolute; top: -18px; left: 24px; font-family: "Inter", serif;
+  font-size: 2.2rem; color: var(--navy-700); background: var(--white);
+  padding: 0 10px; border-radius: 10px; box-shadow: 0 2px 10px rgba(11,21,51,0.08);
+}
+
+/* ===== Áreas ===== */
+.areas-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 40px; }
+@media (max-width: 860px) { .areas-grid { grid-template-columns: repeat(2, 1fr); } }
+.area-chip {
+  display: flex; align-items: center; justify-content: center; text-align: center; gap: 10px;
+  background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px;
+  font-weight: 500; font-size: 0.92rem;
+  transition: border-color 0.25s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease;
+}
+.area-chip:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(11,21,51,0.08); }
+.area-icon { font-size: 1.3rem; }
+
+/* ===== Testimonios ===== */
+.testimonial { display: flex; flex-direction: column; justify-content: space-between; border-top: 3px solid var(--gold); }
+.testimonial-quote { font-size: 1rem; font-style: italic; color: var(--ink); margin-bottom: 20px; }
+.testimonial-quote::before { content: "“"; font-family: "Inter", serif; font-size: 2rem; color: var(--gold); line-height: 0; margin-right: 2px; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.avatar {
+  width: 42px; height: 42px; border-radius: 50%; background: var(--navy-800);
+  color: var(--gold); display: flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: 0.9rem;
+}
+.testimonial-author small { color: var(--muted); }
+
+/* ===== Confianza ===== */
+.trust-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: stretch; }
+/* Foto a la ALTURA de la seccion (directiva de Carlos 2026-08-25): sin
+   marco, sin esquinas, sin sombra — la imagen llena el alto y el recorte
+   lateral prioriza el rostro (object-position). */
+.trust-photo-wrap { position: relative; width: 100%; height: 100%; }
+/* Foto anclada (directiva de Carlos 2026-08-25): sobresale el padding
+   vertical de la seccion (88px) y su lado izquierdo queda en el margen
+   izquierdo del viewport (full-bleed editorial). El FRAME (div) se
+   estira con top/bottom (los divs respetan top+bottom; la img
+   reemplazada no) y la img lo llena con height 100%. */
+.trust-photo-frame {
+  position: absolute;
+  top: -88px; bottom: -88px;
+  /* full-bleed WEB: compensa el margen del container (min(0, 570-50vw))
+     Y su padding lateral (24px): la foto toca el margen izquierdo del
+     viewport. En pantallas <=1140 queda en min(0,...)=0 -24px = -24px
+     (el wrap esta a 24px del borde -> toca). Movil: left:0 (padding). */
+  left: calc(min(0px, 570px - 50vw) - 24px);
+  right: 0;
+  overflow: hidden;
+}
+.trust-photo {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover; object-position: left center;
+}
+.trust-quote {
+  font-family: "Inter", serif; font-size: 1.35rem; font-style: italic;
+  color: var(--gold); border-left: 3px solid var(--gold); padding-left: 18px; margin: 24px 0;
+}
+.trust-creds { color: rgba(248,247,243,0.72); font-size: 0.9rem; }
+@media (max-width: 860px) { .trust-grid { grid-template-columns: 1fr; } }
+
+/* Logo sobre fondos oscuros: chip blanco redondeado (integrado, sin fondo blanco crudo) */
+.logo-chip {
+  display: inline-block; background: var(--white); border-radius: 16px;
+  padding: 10px 16px; box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+}
+.logo-chip img { display: block; height: 52px; width: auto; }
+
+/* ===== Footer (upgrade 2026-08-25: mas elegante) ===== */
+.footer {
+  background: linear-gradient(180deg, var(--navy-950), #050b1d);
+  color: var(--paper); padding: 72px 0 30px; margin-top: 0;
+  border-top: 1px solid rgba(198,161,91,0.28);
+}
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; padding-bottom: 44px; }
+.footer-logo { width: 56px; height: 56px; border-radius: 14px; margin-bottom: 18px; box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
+.footer-tagline { font-family: "Inter", serif; font-size: 1.18rem; font-weight: 600; color: var(--gold); margin-bottom: 10px; letter-spacing: -0.01em; }
+.footer-small { font-size: 0.85rem; color: rgba(248,247,243,0.55); line-height: 1.65; max-width: 300px; }
+.footer h4 {
+  color: var(--gold); font-size: 0.78rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 18px;
+}
+.footer ul { list-style: none; padding: 0; margin: 0; }
+.footer li { margin-bottom: 11px; }
+.footer a {
+  color: rgba(248,247,243,0.8); text-decoration: none; font-size: 0.92rem;
+  transition: color 0.22s ease, padding-left 0.22s ease;
+}
+.footer a:hover { color: var(--gold); padding-left: 3px; }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+  border-top: 1px solid rgba(248,247,243,0.12); padding-top: 26px;
+  font-size: 0.82rem; color: rgba(248,247,243,0.5);
+}
+.link-btn {
+  background: none; border: none; color: rgba(248,247,243,0.55); cursor: pointer;
+  font-size: 0.82rem; text-decoration: underline; text-underline-offset: 3px;
+  transition: color 0.22s ease;
+}
+.link-btn:hover { color: var(--gold); }
+@media (max-width: 860px) { .footer-grid { grid-template-columns: 1fr; } }
+
+/* ===== Modal ===== */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(7,14,36,0.6); z-index: 100;
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+}
+.modal {
+  background: var(--white); border-radius: var(--radius); max-width: 620px;
+  padding: 36px; position: relative; max-height: 82vh; overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+}
+.modal h3 { font-size: 1.4rem; color: var(--navy-900); margin-bottom: 14px; }
+.modal p { font-size: 0.93rem; color: var(--muted); margin-bottom: 12px; }
+.modal-small { font-size: 0.82rem !important; }
+.modal-close {
+  position: absolute; top: 14px; right: 14px; background: none; border: none;
+  font-size: 1.1rem; cursor: pointer; color: var(--muted);
+}
+
+/* ===== Coming soon ===== */
+.coming-soon {
+  background: var(--white); border: 1px dashed var(--gold); border-radius: 14px;
+  padding: 18px 24px; max-width: 460px;
+}
+.coming-soon p { font-weight: 500; color: var(--navy-800); }
+
+/* ---- Chat (identidad LLM) ---- */
+#chat-scroll { scrollbar-width: thin; scrollbar-color: rgba(11,21,51,0.2) transparent; }
+#chat-scroll::-webkit-scrollbar { width: 6px; }
+#chat-scroll::-webkit-scrollbar-thumb { background: rgba(11,21,51,0.18); border-radius: 99px; }
+#chat-scroll::-webkit-scrollbar-track { background: transparent; }
+
+/* ===== Feedback de Carlos 2026-08-17 (QA visual) ===== */
+.center { text-align: center; }
+
+/* íconos planos en las cards de dolor */
+.pain-icon {
+  width: 54px; height: 54px; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+  background: linear-gradient(135deg, rgba(198,161,91,0.20), rgba(198,161,91,0.05));
+  border: 1px solid rgba(198,161,91,0.40); margin-bottom: 16px;
+}
+
+/* callout "si te identificas con algo de esto" */
+.callout { margin-top: 40px; }
+.callout p { font-size: 1.08rem; color: var(--muted); margin-bottom: 18px; }
+.callout strong { color: var(--navy-900); }
+
+/* pasos: 2 columnas */
+.cards-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 860px; margin: 0 auto; }
+@media (max-width: 720px) { .cards-2 { grid-template-columns: 1fr; } }
+
+/* seccion confianza: imagen limpia a la altura de la seccion (sin marco) */
+.trust-photo-wrap { position: relative; }
+.trust-photo { border-radius: 0; border: none; box-shadow: none; position: relative; width: 100%; }
+.trust-badge { display: none; }
+.section-dark-text { color: rgba(248,247,243,0.75); font-size: 1.02rem; max-width: 520px; }
+.trust-quote { font-size: 1.5rem; line-height: 1.4; }
+
+/* testimonios centrados (sección alt) */
+#testimonios { text-align: center; }
+#testimonios .testimonial { text-align: left; }
+#testimonios .section-sub { margin-bottom: 40px; }
+
+/* footer: logo claro sin chip */
+.footer-logo { width: auto; height: 64px; margin-bottom: 16px; }
+
+/* hero: silueta sin marco (el border dorado fue retirado por directiva de
+   Carlos 2026-08-25: 'quitale el border dorado c6a15b80') */
+
+/* nav: quitar la línea secundaria */
+.nav-brand-text small { display: none; }
+
+
+/* ===== Typewriter (Diagnostico) ===== */
+.cq-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: -2px;
+  background: var(--gold);
+  animation: cq-blink 0.85s steps(2, start) infinite;
+}
+
+/* Cursor de generacion estilo LLM (2026-08-18): bloque solido que
+   parpadea mientras el texto "se esta generando". */
+.cq-cursor-llm {
+  display: inline-block;
+  width: 2.5px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  border-radius: 1px;
+  background: var(--navy-900);
+  opacity: 0.9;
+  animation: cq-blink 0.9s steps(2, start) infinite;
+}
+@keyframes cq-blink {
+  to { visibility: hidden; }
+}
+
+
+/* ===== Animaciones (upgrade 2026-08-25) ===== */
+@keyframes cq-fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-copy, .hero-media { animation: cq-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.hero-media { animation-delay: 0.15s; }
+
+/* Scroll-reveal (directiva de Carlos 2026-08-25: 'movimiento mientras el
+   usuario se respalda'): fade-up al entrar en viewport via
+   IntersectionObserver propio (JS first-party, sin librerias). Solo
+   transform/opacity (compositor GPU). El stagger lo asigna el JS por
+   indice dentro del mismo grupo. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Accesibilidad: sin movimiento si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy, .hero-media,
+  .card, .area-chip, .btn, .pain-icon, .reveal { animation: none !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}

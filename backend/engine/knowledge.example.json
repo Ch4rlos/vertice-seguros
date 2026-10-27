@@ -1,0 +1,483 @@
+{
+  "metadatos": {
+    "nombre": "Ejemplo de base de conocimiento",
+    "version": "example-1.0",
+    "estado": "ejemplo",
+    "schema_version": 1,
+    "principio": "Archivo de EJEMPLO. La base real es privada y se configura por cliente."
+  },
+  "dimensiones": [
+    {
+      "id": "PF",
+      "nombre": "Proteccion Familiar",
+      "tipo": "CONSECUENCIA",
+      "peso_irp": 1,
+      "descripcion": "Dimension de ejemplo 1.",
+      "exposicion": "Exposicion de ejemplo en la dimension 1."
+    },
+    {
+      "id": "IN",
+      "nombre": "Ingresos",
+      "tipo": "CAUSA_RAIZ",
+      "peso_irp": 1,
+      "descripcion": "Dimension de ejemplo 2.",
+      "exposicion": "Exposicion de ejemplo en la dimension 2."
+    },
+    {
+      "id": "SA",
+      "nombre": "Salud",
+      "tipo": "CAUSA_DUAL",
+      "peso_irp": 1,
+      "descripcion": "Dimension de ejemplo 3.",
+      "exposicion": "Exposicion de ejemplo en la dimension 3."
+    },
+    {
+      "id": "RE",
+      "nombre": "Retiro",
+      "tipo": "OBJETIVO_DIFERIDO",
+      "peso_irp": 1,
+      "descripcion": "Dimension de ejemplo 4.",
+      "exposicion": "Exposicion de ejemplo en la dimension 4."
+    },
+    {
+      "id": "HO",
+      "nombre": "Hogar",
+      "tipo": "ACTIVOS_EXPUESTOS",
+      "peso_irp": 1,
+      "descripcion": "Dimension de ejemplo 5.",
+      "exposicion": "Exposicion de ejemplo en la dimension 5."
+    },
+    {
+      "id": "MO",
+      "nombre": "Movilidad",
+      "tipo": "ACTIVOS_EXPUESTOS",
+      "peso_irp": 1,
+      "descripcion": "Dimension de ejemplo 6.",
+      "exposicion": "Exposicion de ejemplo en la dimension 6."
+    },
+    {
+      "id": "ED",
+      "nombre": "Educacion",
+      "tipo": "OBJETIVO_DIFERIDO",
+      "peso_irp": 1,
+      "descripcion": "Dimension de ejemplo 7.",
+      "exposicion": "Exposicion de ejemplo en la dimension 7."
+    },
+    {
+      "id": "NE",
+      "nombre": "Negocio",
+      "tipo": "CONCENTRACION",
+      "peso_irp": 1,
+      "descripcion": "Dimension de ejemplo 8.",
+      "exposicion": "Exposicion de ejemplo en la dimension 8."
+    }
+  ],
+  "preguntas": [
+    {
+      "id": "IN-ING",
+      "texto": "Pregunta de ejemplo 1: como describirias tu situacion?",
+      "variable": "v12",
+      "dimensiones_alimenta": [
+        "IN",
+        "PF",
+        "RE"
+      ],
+      "habilita": [
+        "v3",
+        "v1"
+      ],
+      "omite": [],
+      "condicion": "siempre",
+      "respuesta_desconocido": "no_se",
+      "obligatoria": true,
+      "dominio": {
+        "tipo": "monto"
+      },
+      "condicion_eval": "true",
+      "orden": 1
+    },
+    {
+      "id": "IN3",
+      "texto": "Pregunta de ejemplo 2: como describirias tu situacion?",
+      "variable": "v11",
+      "dimensiones_alimenta": [
+        "IN",
+        "PF"
+      ],
+      "habilita": [
+        "v4",
+        "v5"
+      ],
+      "omite": [],
+      "condicion": "siempre",
+      "respuesta_desconocido": "no_se",
+      "obligatoria": true,
+      "dominio": {
+        "tipo": "monto"
+      },
+      "condicion_eval": "true",
+      "orden": 2
+    },
+    {
+      "id": "IN1",
+      "texto": "Pregunta de ejemplo 3: como describirias tu situacion?",
+      "variable": "v10",
+      "dimensiones_alimenta": [
+        "IN",
+        "PF"
+      ],
+      "habilita": [
+        "v2"
+      ],
+      "omite": [],
+      "condicion": "siempre",
+      "respuesta_desconocido": "no_se",
+      "obligatoria": true,
+      "dominio": {
+        "opciones": [
+          1,
+          2,
+          3
+        ]
+      },
+      "condicion_eval": "true",
+      "orden": 3
+    },
+    {
+      "id": "IN2",
+      "texto": "Pregunta de ejemplo 4: como describirias tu situacion?",
+      "variable": "v8",
+      "dimensiones_alimenta": [
+        "IN"
+      ],
+      "habilita": [],
+      "omite": [],
+      "condicion": "IN1 respondida",
+      "respuesta_desconocido": "no_se",
+      "obligatoria": false,
+      "dominio": {
+        "opciones": [
+          "nomina",
+          "honorarios",
+          "variable",
+          "informal"
+        ]
+      },
+      "condicion_eval": "in_fuentes != null",
+      "orden": 4
+    },
+    {
+      "id": "IN4",
+      "texto": "Pregunta de ejemplo 5: como describirias tu situacion?",
+      "variable": "v9",
+      "dimensiones_alimenta": [
+        "IN"
+      ],
+      "habilita": [],
+      "omite": [
+        "v6"
+      ],
+      "condicion": "IN3 respondida",
+      "respuesta_desconocido": "no_se",
+      "obligatoria": true,
+      "dominio": {
+        "tipo": "meses"
+      },
+      "condicion_eval": "in_gasto_fijo != null",
+      "orden": 5
+    },
+    {
+      "id": "IN-DEUDA",
+      "texto": "Pregunta de ejemplo 6: como describirias tu situacion?",
+      "variable": "v7",
+      "dimensiones_alimenta": [
+        "IN"
+      ],
+      "habilita": [],
+      "omite": [],
+      "condicion": "IN-ING respondida",
+      "respuesta_desconocido": "no_se",
+      "obligatoria": false,
+      "dominio": {
+        "tipo": "monto"
+      },
+      "condicion_eval": "in_ingreso != null",
+      "orden": 6
+    }
+  ],
+  "reglas": [
+    {
+      "id": "R1",
+      "tipo": "riesgo",
+      "condicion": "siempre",
+      "variables": [
+        "v13",
+        "v14",
+        "v15",
+        "v11"
+      ],
+      "efecto": "Efecto de ejemplo 1.",
+      "dimension": "PF",
+      "clasificacion": "RIESGO",
+      "prioridad": "alta (jerarquia 2-3, I1)",
+      "justificacion": "Regla de ejemplo 1.",
+      "fuente": "ejemplo",
+      "nivel_fuente": "ejemplo",
+      "condicion_eval": "True",
+      "brecha_calculo": null
+    },
+    {
+      "id": "R2",
+      "tipo": "evaluacion",
+      "condicion": "siempre",
+      "variables": [
+        "v15"
+      ],
+      "efecto": "Efecto de ejemplo 2.",
+      "dimension": "PF",
+      "clasificacion": "N/A",
+      "prioridad": "n/a",
+      "justificacion": "Regla de ejemplo 2.",
+      "fuente": "ejemplo",
+      "nivel_fuente": "ejemplo",
+      "condicion_eval": "True",
+      "brecha_calculo": null
+    },
+    {
+      "id": "R3",
+      "tipo": "riesgo_residual",
+      "condicion": "siempre",
+      "variables": [
+        "v16"
+      ],
+      "efecto": "Efecto de ejemplo 3.",
+      "dimension": "SA",
+      "clasificacion": "RIESGO o NECESIDAD segun sondas",
+      "prioridad": "media",
+      "justificacion": "Regla de ejemplo 3.",
+      "fuente": "ejemplo",
+      "nivel_fuente": "ejemplo",
+      "condicion_eval": "True",
+      "brecha_calculo": null
+    },
+    {
+      "id": "R4",
+      "tipo": "n_a",
+      "condicion": "siempre",
+      "variables": [
+        "v13"
+      ],
+      "efecto": "Efecto de ejemplo 4.",
+      "dimension": "PF",
+      "clasificacion": "N/A",
+      "prioridad": "n/a",
+      "justificacion": "Regla de ejemplo 4.",
+      "fuente": "ejemplo",
+      "nivel_fuente": "ejemplo",
+      "condicion_eval": "True",
+      "brecha_calculo": null
+    }
+  ],
+  "variables": [
+    {
+      "id": "v1",
+      "dimension": "PF",
+      "tipo": "entrada",
+      "descripcion": "Variable de ejemplo 1."
+    },
+    {
+      "id": "v2",
+      "dimension": "PF",
+      "tipo": "entrada",
+      "descripcion": "Variable de ejemplo 2."
+    },
+    {
+      "id": "v3",
+      "dimension": "PF",
+      "tipo": "entrada",
+      "descripcion": "Variable de ejemplo 3."
+    },
+    {
+      "id": "v4",
+      "dimension": "PF",
+      "tipo": "entrada",
+      "descripcion": "Variable de ejemplo 4."
+    },
+    {
+      "id": "v5",
+      "dimension": "PF",
+      "tipo": "entrada",
+      "descripcion": "Variable de ejemplo 5."
+    },
+    {
+      "id": "v6",
+      "dimension": "PF",
+      "tipo": "entrada",
+      "descripcion": "Variable de ejemplo 6."
+    },
+    {
+      "id": "v7",
+      "dimension": "IN",
+      "tipo": "entrada",
+      "descripcion": "Variable de ejemplo 7.",
+      "unidad": "MXN/mes",
+      "fuente": "entrevista",
+      "nivel_fuente": "ENTREVISTA",
+      "dependencias": [],
+      "estado_inicial": "desconocido"
+    },
+    {
+      "id": "v8",
+      "dimension": "IN",
+      "tipo": "entrada",
+      "descripcion": "Variable de ejemplo 8.",
+      "unidad": "categorias",
+      "fuente": "entrevista",
+      "nivel_fuente": "ENTREVISTA",
+      "dependencias": [],
+      "estado_inicial": "desconocido"
+    },
+    {
+      "id": "v9",
+      "dimension": "IN",
+      "tipo": "entrada",
+      "descripcion": "Variable de ejemplo 9.",
+      "unidad": "meses",
+      "fuente": "CONDUSEF (3-6 meses)",
+      "nivel_fuente": "OFICIAL_VERIFICADA",
+      "dependencias": [],
+      "estado_inicial": "desconocido"
+    },
+    {
+      "id": "v10",
+      "dimension": "IN",
+      "tipo": "entrada",
+      "descripcion": "Variable de ejemplo 10.",
+      "unidad": "conteo",
+      "fuente": "entrevista",
+      "nivel_fuente": "ENTREVISTA",
+      "dependencias": [],
+      "estado_inicial": "desconocido"
+    },
+    {
+      "id": "v11",
+      "dimension": "IN",
+      "tipo": "entrada",
+      "descripcion": "Variable de ejemplo 11.",
+      "unidad": "MXN/mes",
+      "fuente": "definicion CONDUSEF (fondo emergencia)",
+      "nivel_fuente": "OFICIAL_VERIFICADA",
+      "dependencias": [],
+      "estado_inicial": "desconocido"
+    },
+    {
+      "id": "v12",
+      "dimension": "IN",
+      "tipo": "entrada",
+      "descripcion": "Variable de ejemplo 12.",
+      "unidad": "MXN/mes",
+      "fuente": "entrevista",
+      "nivel_fuente": "ENTREVISTA",
+      "dependencias": [],
+      "estado_inicial": "desconocido"
+    },
+    {
+      "id": "v13",
+      "dimension": "PF",
+      "tipo": "entrada",
+      "descripcion": "Variable de ejemplo 13.",
+      "unidad": "categorias",
+      "fuente": "metodologia CQ; ENIF 2021",
+      "nivel_fuente": "OFICIAL_VERIFICADA",
+      "dependencias": [],
+      "estado_inicial": "desconocido"
+    },
+    {
+      "id": "v14",
+      "dimension": "PF",
+      "tipo": "entrada",
+      "descripcion": "Variable de ejemplo 14.",
+      "unidad": "bool",
+      "fuente": "metodologia CQ",
+      "nivel_fuente": "OFICIAL_VERIFICADA",
+      "dependencias": [],
+      "estado_inicial": "desconocido"
+    },
+    {
+      "id": "v15",
+      "dimension": "PF",
+      "tipo": "entrada",
+      "descripcion": "Variable de ejemplo 15.",
+      "unidad": "MXN",
+      "fuente": "entrevista",
+      "nivel_fuente": "ENTREVISTA",
+      "dependencias": [],
+      "estado_inicial": "desconocido"
+    },
+    {
+      "id": "v16",
+      "dimension": "SA",
+      "tipo": "entrada",
+      "descripcion": "Variable de ejemplo 16.",
+      "unidad": "categorias",
+      "fuente": "entrevista",
+      "nivel_fuente": "ENTREVISTA",
+      "dependencias": [],
+      "estado_inicial": "desconocido"
+    }
+  ],
+  "bandas_irp": [
+    {
+      "min": 0,
+      "max": 33,
+      "nivel": "BAJO"
+    },
+    {
+      "min": 33,
+      "max": 66,
+      "nivel": "MEDIO"
+    },
+    {
+      "min": 66,
+      "max": 100,
+      "nivel": "ALTO"
+    }
+  ],
+  "estados_dimension": [
+    "SIN_DATOS",
+    "BAJO",
+    "MEDIO",
+    "ALTO"
+  ],
+  "reglas_de_oro": [
+    {
+      "texto": "Regla de oro de ejemplo 1."
+    },
+    {
+      "texto": "Regla de oro de ejemplo 2."
+    },
+    {
+      "texto": "Regla de oro de ejemplo 3."
+    }
+  ],
+  "scoring": {
+    "principio": "Formula no incluida en el ejemplo.",
+    "P_d": {},
+    "R_d": {},
+    "PR_d": "Formula no incluida en el ejemplo.",
+    "factores_prioridad": {},
+    "IRP": {},
+    "tablas": {},
+    "formulas": {},
+    "prioridad": {},
+    "clasificacion_orden": [
+      "N/A",
+      "RIESGO",
+      "NECESIDAD",
+      "OBJETIVO",
+      "OPORTUNIDAD",
+      "DESCONOCIDO"
+    ],
+    "estrategias": {}
+  }
+}

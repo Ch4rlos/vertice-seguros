@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /api/
+Disallow: /panel
+Disallow: /diagnostico
+Disallow: /compartido
+
+# La landing es la cara publica de la marca; el motor no se mapea.
+Allow: /

@@ -1,0 +1,6 @@
+django==5.2.*
+djangorestframework==3.17.*
+psycopg[binary]
+gunicorn
+django-cors-headers
+redis

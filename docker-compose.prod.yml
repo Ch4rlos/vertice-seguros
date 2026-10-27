@@ -1,0 +1,21 @@
+# Override de PRODUCCION para el VPS Contabo (cqpatrimonial.com / .pro).
+# Uso: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+# Sin secretos: lee DJANGO_SECRET_KEY / POSTGRES_PASSWORD del .env (chmod 600).
+services:
+  backend:
+    environment:
+      DJANGO_DEBUG: "0"
+      DJANGO_ALLOWED_HOSTS: "cqpatrimonial.com,www.cqpatrimonial.com,cqpatrimonial.pro,www.cqpatrimonial.pro"
+      # El compose base NO propaga la password del panel (bug 2026-08-28):
+      # el login del panel es password-only contra settings.PANEL_PASSWORD.
+      DJANGO_PANEL_PASSWORD: ${DJANGO_PANEL_PASSWORD:?requerida en .env}
+    command: >
+      sh -c "python manage.py migrate &&
+             gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+    # Fix prod: el healthcheck base usa localhost sin Host header -> Django 400
+    # (ALLOWED_HOSTS restringido). Aqui se manda Host permitido.
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen(urllib.request.Request('http://localhost:8000/api/health/', headers={'Host':'cqpatrimonial.com'}), timeout=3)\""]
+      interval: 10s
+      timeout: 5s
+      retries: 10
