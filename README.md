@@ -1,21 +1,22 @@
-# Vértice Seguros
+# Landing page de ventas + Panel de control + Diseño a tu medida
 
-**Landing page + motor de diagnóstico + Dashboard + CRM para agentes y vendedores de seguros.**
+**Vértice Seguros** — el sistema completo para agentes y vendedores de seguros:
+una sola aplicación que convierte visitantes en prospectos calificados.
 
-Una sola aplicación que convierte visitantes en prospectos calificados: el visitante
-responde una evaluación, el motor calcula su nivel de protección en ocho áreas del
-patrimonio, y el agente recibe el prospecto con diagnóstico, prioridades y siguiente
-acción comercial — todo dentro del mismo sistema, sin hojas de cálculo ni plugins.
+El visitante responde una evaluación, el motor calcula su nivel de protección en ocho
+áreas del patrimonio, y el agente recibe el prospecto con diagnóstico, prioridades y
+siguiente acción comercial — todo dentro del mismo sistema, sin hojas de cálculo ni
+plugins.
 
 > Demo público: *(pendiente de publicar)*
 
-![Landing de Vértice Seguros](docs/screenshots/01-hero.png)
+![Landing de Vértice Seguros](docs/screenshots/01-hero.jpg)
 
 ## Lo que ves
 
 | Landing | Incluye Dashboard + CRM |
 |---|---|
-| ![Landing](docs/screenshots/03-asesora.png) | ![Plataforma](docs/screenshots/02-plataforma.png) |
+| ![Landing](docs/screenshots/03-asesora.jpg) | ![Plataforma](docs/screenshots/02-plataforma.jpg) |
 
 ---
 
