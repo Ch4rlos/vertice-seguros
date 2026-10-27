@@ -11,8 +11,10 @@ from engine.engine import Engine
 from engine.knowledge import Knowledge
 
 BASE = os.path.dirname(__file__)
-KNOWLEDGE = os.path.join(BASE, "knowledge-v03.json")
+KNOWLEDGE = os.path.join(BASE, "knowledge.example.json")
+# Los casos de regresion reales son privados y no se distribuyen.
 CASOS = os.path.join(BASE, "casos_a_o.json")
+SIN_CASOS = not os.path.exists(CASOS)
 
 
 def _veredicto(esperado, d):
@@ -39,6 +41,7 @@ def _veredicto(esperado, d):
     return not fallos, fallos
 
 
+@unittest.skipIf(SIN_CASOS, "los casos de regresion son privados y no se distribuyen")
 class TestCasosAO(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
