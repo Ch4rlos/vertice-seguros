@@ -9,6 +9,14 @@ acción comercial — todo dentro del mismo sistema, sin hojas de cálculo ni pl
 
 > Demo público: *(pendiente de publicar)*
 
+![Landing de Vértice Seguros](docs/screenshots/01-hero.png)
+
+## Lo que ves
+
+| Landing | Incluye Dashboard + CRM |
+|---|---|
+| ![Landing](docs/screenshots/03-asesora.png) | ![Plataforma](docs/screenshots/02-plataforma.png) |
+
 ---
 
 ## Qué incluye
