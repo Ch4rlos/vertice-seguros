@@ -1,6 +1,6 @@
 """Servicio de evaluacion: conecta el motor con Django.
 
-Carga el Knowledge JSON (copia runtime en engine/knowledge-v03.json) una vez
+Carga la base de conocimiento (ruta configurable con KNOWLEDGE_PATH) una vez
 por proceso y expone: pregunta inicial, siguiente pregunta, estado parcial
 (radar en vivo), y el diagnostico preliminar PUBLICO.
 
@@ -15,9 +15,13 @@ from django.conf import settings
 from engine.engine import Engine, EvaluacionError
 from engine.knowledge import Knowledge, KnowledgeError
 
-KNOWLEDGE_PATH = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    "engine", "knowledge-v03.json",
+# Ruta configurable; por defecto el ejemplo incluido en el repo
+KNOWLEDGE_PATH = os.environ.get(
+    "KNOWLEDGE_PATH",
+    os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        "engine", "knowledge.example.json",
+    ),
 )
 
 _KNOWLEDGE = None
