@@ -8,7 +8,6 @@ El visitante responde una evaluación, el motor calcula su nivel de protección 
 siguiente acción comercial — todo dentro del mismo sistema, sin hojas de cálculo ni
 plugins.
 
-> Demo público: *(pendiente de publicar)*
 
 ![Landing de Vértice Seguros](docs/screenshots/01-hero.jpg)
 
